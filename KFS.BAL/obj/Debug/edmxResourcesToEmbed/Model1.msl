@@ -1,0 +1,41 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="praticedbModelStoreContainer" CdmEntityContainer="praticedbEntities">
+    <EntitySetMapping Name="cities">
+      <EntityTypeMapping TypeName="praticedbModel.city">
+        <MappingFragment StoreEntitySet="city">
+          <ScalarProperty Name="cityid" ColumnName="cityid" />
+          <ScalarProperty Name="cityname" ColumnName="cityname" />
+          <ScalarProperty Name="sid" ColumnName="sid" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="countries">
+      <EntityTypeMapping TypeName="praticedbModel.country">
+        <MappingFragment StoreEntitySet="country">
+          <ScalarProperty Name="cid" ColumnName="cid" />
+          <ScalarProperty Name="cname" ColumnName="cname" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="states">
+      <EntityTypeMapping TypeName="praticedbModel.state">
+        <MappingFragment StoreEntitySet="state">
+          <ScalarProperty Name="sid" ColumnName="sid" />
+          <ScalarProperty Name="sname" ColumnName="sname" />
+          <ScalarProperty Name="cid" ColumnName="cid" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="InternInfoes">
+      <EntityTypeMapping TypeName="praticedbModel.InternInfo">
+        <MappingFragment StoreEntitySet="InternInfo">
+          <ScalarProperty Name="College" ColumnName="College" />
+          <ScalarProperty Name="Last_Name" ColumnName="Last_Name" />
+          <ScalarProperty Name="First_Name" ColumnName="First_Name" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>

@@ -1,0 +1,77 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="praticedbModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="city">
+    <Key>
+      <PropertyRef Name="cityid" />
+    </Key>
+    <Property Name="cityid" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="cityname" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="sid" Type="Int32" />
+    <NavigationProperty Name="state" Relationship="Self.FK__city__sid__286302EC" FromRole="city" ToRole="state" />
+  </EntityType>
+  <EntityType Name="country">
+    <Key>
+      <PropertyRef Name="cid" />
+    </Key>
+    <Property Name="cid" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="cname" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="states" Relationship="Self.FK__state__cid__25869641" FromRole="country" ToRole="state" />
+  </EntityType>
+  <EntityType Name="state">
+    <Key>
+      <PropertyRef Name="sid" />
+    </Key>
+    <Property Name="sid" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="sname" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="cid" Type="Int32" />
+    <NavigationProperty Name="cities" Relationship="Self.FK__city__sid__286302EC" FromRole="state" ToRole="city" />
+    <NavigationProperty Name="country" Relationship="Self.FK__state__cid__25869641" FromRole="state" ToRole="country" />
+  </EntityType>
+  <Association Name="FK__city__sid__286302EC">
+    <End Role="state" Type="Self.state" Multiplicity="0..1" />
+    <End Role="city" Type="Self.city" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="state">
+        <PropertyRef Name="sid" />
+      </Principal>
+      <Dependent Role="city">
+        <PropertyRef Name="sid" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__state__cid__25869641">
+    <End Role="country" Type="Self.country" Multiplicity="0..1" />
+    <End Role="state" Type="Self.state" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="country">
+        <PropertyRef Name="cid" />
+      </Principal>
+      <Dependent Role="state">
+        <PropertyRef Name="cid" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="praticedbEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="cities" EntityType="Self.city" />
+    <EntitySet Name="countries" EntityType="Self.country" />
+    <EntitySet Name="states" EntityType="Self.state" />
+    <AssociationSet Name="FK__city__sid__286302EC" Association="Self.FK__city__sid__286302EC">
+      <End Role="state" EntitySet="states" />
+      <End Role="city" EntitySet="cities" />
+    </AssociationSet>
+    <AssociationSet Name="FK__state__cid__25869641" Association="Self.FK__state__cid__25869641">
+      <End Role="country" EntitySet="countries" />
+      <End Role="state" EntitySet="states" />
+    </AssociationSet>
+    <EntitySet Name="InternInfoes" EntityType="praticedbModel.InternInfo" />
+  </EntityContainer>
+  <EntityType Name="InternInfo">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="First_Name" Type="String" MaxLength="20" FixedLength="true" Unicode="true" />
+    <Property Name="Last_Name" Type="String" MaxLength="20" FixedLength="true" Unicode="true" />
+    <Property Name="College" Type="String" MaxLength="20" FixedLength="true" Unicode="true" />
+  </EntityType>
+</Schema>
